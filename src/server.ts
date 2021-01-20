@@ -7,13 +7,14 @@ const meuApp = express()
 const usuarios = ["beltrano","ciclano","fulano"]
 
 meuApp.get("/usuarios",(req,res)=>{
-    const search = req.query.search
+    const search = String(req.query.search)
     console.log(search)
 
+    const minhafiltragem = search ? usuarios.filter(i => i.includes(search)): usuarios
 
-    return res.json(usuarios)
+    return res.json(minhafiltragem)
 
-})
+})  
 
 
 meuApp.get("/usuarios",(req,res)=>{
