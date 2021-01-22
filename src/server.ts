@@ -3,6 +3,8 @@ import express from "express"
 
 const meuApp = express()
 
+meuApp.use(express.json())
+
 
 const usuarios = ["beltrano","ciclano","fulano"]
 
@@ -15,6 +17,9 @@ meuApp.get("/usuarios",(req,res)=>{
     return res.json(minhafiltragem)
 
 })  
+
+
+
 
 
 meuApp.get("/usuarios",(req,res)=>{
@@ -30,9 +35,13 @@ meuApp.get("/usuarios/:idViaArray",(req,res)=>{
 })
 
 meuApp.post("/usuarios",(req,res)=>{
+
+const meuDado = req.body
+console.log(meuDado)
+
 const usuario = {
-nome:"beltrano",
-email:"beltrano@google.com"
+nome:meuDado.nome,
+email:meuDado.email
 }
 return res.json(usuario)
 })
